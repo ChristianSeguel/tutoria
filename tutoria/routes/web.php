@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TutorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+    Route::get('/tutor/', function () {
+        return view('tutor.index');
+    });
+Route::get('/tutor/create', [TutorController::class,'create']);
+
+Route::resource('tutor',TutorController::class);
