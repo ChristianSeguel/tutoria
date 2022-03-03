@@ -40,10 +40,25 @@ class TutorController extends Controller
      */
     public function store(Request $request)
     {
+        $requisitos=[
+            'Nombre'=>'required|string|max:100',
+            'Apellidos'=>'required|string|max:100',
+            'Correo'=>'required|email',
+            'Contraseña'=>'required|string|max:100',
+        ];
+        $mensaje=[
+            'required'=>'El :attribute es requerido',
+            'Apellidos.required'=>'El apellido es requerido',
+            'Contraseña.required'=>'Se requiere una contraseña'
+        ];
+
+        $this->validate($request, $requisitos, $mensaje);
+
         //$datosTutor=request()->all();
         $datosTutor=request()->except('_token');
         Tutor::insert($datosTutor);
-        return response()->json($datosTutor);
+        //return response()->json($datosTutor);
+        return redirect('tutor')->with('mensaje','Tutor agregado con exito');
 
     }
 
@@ -80,12 +95,28 @@ class TutorController extends Controller
      */
     public function update(Request $request,$id)
     {
+        $requisitos=[
+            'Nombre'=>'required|string|max:100',
+            'Apellidos'=>'required|string|max:100',
+            'Correo'=>'required|email',
+            'Contraseña'=>'required|string|max:100',
+        ];
+        $mensaje=[
+            'required'=>'El :attribute es requerido',
+            'Apellidos.required'=>'El apellido es requerido',
+            'Contraseña.required'=>'Se requiere una contraseña'
+        ];
+
+        $this->validate($request, $requisitos, $mensaje);
         //
+
+
         $datosTutor=request()->except('_token','_method');
-        Tutor::where('id','=',$id)->udate($datostutor);
-        
-        $tutor=Tutor::findOrFail($id);
-        return view('tutor.edit', compact('tutor'));
+       Tutor::where('id','=',$id)->update($datosTutor);
+
+       $tutor=Tutor::findOrFail($id);
+        //return view('tutor.edit', compact('tutor'));
+        return redirect('tutor')->with('mensaje','Tutor editado con exito');
 
 
     }
@@ -100,6 +131,7 @@ class TutorController extends Controller
     {
         //
         Tutor::destroy($id);
-        return redirect('tutor');
+        //return redirect('tutor');
+        return redirect('tutor')->with('mensaje','Tutor eliminado con exito');
     }
 }

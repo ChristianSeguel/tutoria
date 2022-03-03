@@ -15,11 +15,23 @@ use App\Http\Controllers\TutorController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
     Route::get('/tutor/', function () {
         return view('tutor.index');
     });
 Route::get('/tutor/create', [TutorController::class,'create']);
 
-Route::resource('tutor',TutorController::class);
+Route::resource('tutor',TutorController::class)->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', [TutorController::class, 'index'])->name('home');
+Route::group(['middleware'=>'auth'],function () {
+    Route::get('/', [TutorController::class, 'index'])->name('home');
+    
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
