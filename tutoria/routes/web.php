@@ -26,7 +26,7 @@ Route::get('/tutor/create', [TutorController::class,'create']);
 Route::get('/alumno/', function () {
     return view('alumno.index');
 });
-Route::get('/alumno/create', [TutorController::class,'create']);
+Route::get('/alumno/create', [AlumnoController::class,'create']);
 
 Route::resource('tutor',TutorController::class)->middleware('auth');
 Route::resource('alumno',AlumnoController::class)->middleware('auth');

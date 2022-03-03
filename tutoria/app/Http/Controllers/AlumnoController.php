@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alumno;
+use App\Models\Tutor;
 use Illuminate\Http\Request;
 
 class AlumnoController extends Controller
@@ -27,7 +28,9 @@ class AlumnoController extends Controller
     public function create()
     {
         //
-        return view('alumno.create');
+        $alumno= new Alumno();
+        $tutors= Tutor::all();
+        return view('alumno.create',compact('alumno','tutors'));
     }
 
     /**
@@ -79,7 +82,8 @@ class AlumnoController extends Controller
     {
         //
         $alumno=Alumno::findOrFail($id);
-        return view('alumno.edit', compact('alumno'));
+        $tutors= Tutor::all();
+        return view('alumno.edit', compact('alumno','tutors'));
     }
 
     /**

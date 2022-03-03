@@ -28,9 +28,24 @@
     <input type="text" class="form-control" name="Correo" value="{{isset($alumno->Correo)?$alumno->Correo:old('Correo')}}" id="Correo">
     <br>
 </div>
+<div class="form-group">
+<label for="id_tutor"> id_tutor </label>
+
+    <select name="id_tutor" class="form-control">
+        @foreach($tutors as $tutor)
+            <option>
+                {{$tutor->id}}
+            </option>
+            @endforeach
+
+    </select>
+<br>
+<br><br><br>
+</div>
+
 
 
 <div class="form-group">
-    <input class="btn btn-success" type="submit" value="{{$modo}} datos">
-    <a class="btn btn-primary" href="{{url('/alumno')}}">regresar</a>
+<input class="btn btn-success" type="submit" value="{{$modo}} datos">
+<a class="btn btn-primary" href="{{url('/alumno')}}">regresar</a>
 </div>

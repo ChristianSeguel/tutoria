@@ -23,6 +23,7 @@
                 <th>Nombre</th>
                 <th>Apellidos</th>
                 <th>Correo</th>
+                <th>id_tutor</th>
                 <th>Acciones</th>
             </tr>
             </thead>
@@ -34,6 +35,7 @@
                     <td>{{$alumno->Nombre}}</td>
                     <td>{{$alumno->Apellidos}}</td>
                     <td>{{$alumno->Correo}}</td>
+                    <td>{{$alumno->tutor->Nombre}}</td>
                     <td>
                         <a href="{{url('/alumno/'.$alumno->id.'/edit')}}"class="btn btn-warning">
                             Editar

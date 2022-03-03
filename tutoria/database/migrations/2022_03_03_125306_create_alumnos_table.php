@@ -18,7 +18,7 @@ class CreateAlumnosTable extends Migration
             $table->string('Nombre');
             $table->string('Apellidos');
             $table->string('Correo');
-            $table->bigInteger('tutor_id')->unsigned();
+            $table->bigInteger('id_tutor')->unsigned();
             $table->timestamps();
 
         });
