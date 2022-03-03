@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tutor;
+use App\Models\Alumno;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\DocBlock\Tags\Return_;
-use function GuzzleHttp\Promise\all;
 
-class TutorController extends Controller
+class AlumnoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,8 @@ class TutorController extends Controller
     public function index()
     {
         //
-        $datos['tutors']=Tutor::paginate(5);
-        return view('tutor.index',$datos);
+        $datos['alumnos']=Alumno::paginate(5);
+        return view('alumno.index',$datos);
     }
 
     /**
@@ -29,7 +27,7 @@ class TutorController extends Controller
     public function create()
     {
         //
-        return view('tutor.create');
+        return view('alumno.create');
     }
 
     /**
@@ -40,6 +38,7 @@ class TutorController extends Controller
      */
     public function store(Request $request)
     {
+        //
         $requisitos=[
             'Nombre'=>'required|string|max:100',
             'Apellidos'=>'required|string|max:100',
@@ -52,21 +51,20 @@ class TutorController extends Controller
 
         $this->validate($request, $requisitos, $mensaje);
 
-        //$datosTutor=request()->all();
-        $datosTutor=request()->except('_token');
-        Tutor::insert($datosTutor);
-        //return response()->json($datosTutor);
-        return redirect('tutor')->with('mensaje','Tutor agregado con exito');
-
+        //$datosAlumno=request()->all();
+        $datosAlumno=request()->except('_token');
+        Alumno::insert($datosAlumno);
+        //return response()->json($datosAlumno);
+        return redirect('alumno')->with('mensaje','Alumno agregado con exito');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Tutor  $tutor
+     * @param  \App\Models\Alumno  $alumno
      * @return \Illuminate\Http\Response
      */
-    public function show(Tutor $tutor)
+    public function show(Alumno $alumno)
     {
         //
     }
@@ -74,25 +72,26 @@ class TutorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Tutor  $tutor
+     * @param  \App\Models\Alumno  $alumno
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
-        $tutor=Tutor::findOrFail($id);
-        return view('tutor.edit', compact('tutor'));
+        $alumno=Alumno::findOrFail($id);
+        return view('alumno.edit', compact('alumno'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tutor  $tutor
+     * @param  \App\Models\Alumno  $alumno
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
+        //
         $requisitos=[
             'Nombre'=>'required|string|max:100',
             'Apellidos'=>'required|string|max:100',
@@ -107,27 +106,24 @@ class TutorController extends Controller
         //
 
 
-        $datosTutor=request()->except('_token','_method');
-       Tutor::where('id','=',$id)->update($datosTutor);
+        $datosAlumno=request()->except('_token','_method');
+        Alumno::where('id','=',$id)->update($datosAlumno);
 
-       $tutor=Tutor::findOrFail($id);
-        //return view('tutor.edit', compact('tutor'));
-        return redirect('tutor')->with('mensaje','Tutor editado con exito');
-
-
+        $alumno=Alumno::findOrFail($id);
+        //return view('alumno.edit', compact('alumno'));
+        return redirect('alumno')->with('mensaje','Alumno editado con exito');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Tutor  $tutor
+     * @param  \App\Models\Alumno  $alumno
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
-        Tutor::destroy($id);
-        //return redirect('tutor');
-        return redirect('tutor')->with('mensaje','Tutor eliminado con exito');
+        Alumno::destroy($id);
+        return redirect('alumno')->with('mensaje','Alumno eliminado con exito');
     }
 }

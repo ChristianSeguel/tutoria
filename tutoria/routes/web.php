@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TutorController;
+use App\Http\Controllers\AlumnoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,14 +23,19 @@ Route::get('/', function () {
     });
 Route::get('/tutor/create', [TutorController::class,'create']);
 
-Route::resource('tutor',TutorController::class)->middleware('auth');
+Route::get('/alumno/', function () {
+    return view('alumno.index');
+});
+Route::get('/alumno/create', [TutorController::class,'create']);
 
+Route::resource('tutor',TutorController::class)->middleware('auth');
+Route::resource('alumno',AlumnoController::class)->middleware('auth');
 Auth::routes();
 
 Route::get('/home', [TutorController::class, 'index'])->name('home');
 Route::group(['middleware'=>'auth'],function () {
     Route::get('/', [TutorController::class, 'index'])->name('home');
-    
+
 });
 
 Auth::routes();

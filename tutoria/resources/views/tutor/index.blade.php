@@ -7,7 +7,7 @@
     {{Session::get('mensaje')}}
     <button type="button" class="close" data-dimiss="alert" arial-label="Close">
     <span aria-hidden="true">&times;</span>
-</button> 
+</button>
 </div>
 @endif
 
@@ -23,7 +23,6 @@
             <th>Nombre</th>
             <th>Apellidos</th>
             <th>Correo</th>
-            <th>Contraseña</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -35,12 +34,11 @@
             <td>{{$tutor->Nombre}}</td>
             <td>{{$tutor->Apellidos}}</td>
             <td>{{$tutor->Correo}}</td>
-            <td>{{$tutor->Contraseña}}</td>
             <td>
             <a href="{{url('/tutor/'.$tutor->id.'/edit')}}"class="btn btn-warning">
                 Editar
             </a>
-            
+
             |
                 <form action="{{ url('/tutor/'.$tutor->id)}}" class="d-inline" method="post">
                     @csrf
@@ -51,7 +49,7 @@
         </tr>
         @endforeach
     </tbody>
-    
+
 </table>
 {!! $tutors->links() !!}
 </div>

@@ -29,11 +29,6 @@
     <br>
     </div>
 
-    <div class="form-group">
-    <label for="Contraseña"> Contraseña </label>
-    <input type="text" class="form-control" name="Contraseña" value="{{isset($tutor->Contraseña)?$tutor->Contraseña:old('Contraseña') }}" id="Contraseña">
-    <br>
-</div>
 
     <div class="form-group">
     <input class="btn btn-success" type="submit" value="{{$modo}} datos">
