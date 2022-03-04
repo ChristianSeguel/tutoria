@@ -32,12 +32,11 @@ Route::resource('tutor',TutorController::class)->middleware('auth');
 Route::resource('alumno',AlumnoController::class)->middleware('auth');
 Auth::routes();
 
-Route::get('/home', [TutorController::class, 'index'])->name('home');
-Route::group(['middleware'=>'auth'],function () {
-    Route::get('/', [TutorController::class, 'index'])->name('home');
+Route::get('/home',function () {
+    return view('welcome');})->name('home');
+    Route::get('/',function () {
+        return view('welcome');})->name('home');
 
-});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

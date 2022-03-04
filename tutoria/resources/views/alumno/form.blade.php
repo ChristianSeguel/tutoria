@@ -29,7 +29,7 @@
     <br>
 </div>
 <div class="form-group">
-<label for="id_tutor"> id_tutor </label>
+<label for="id_tutor"> ID del tutor </label>
 
     <select name="id_tutor" class="form-control">
         @foreach($tutors as $tutor)

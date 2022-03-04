@@ -23,7 +23,7 @@
                 <th>Nombre</th>
                 <th>Apellidos</th>
                 <th>Correo</th>
-                <th>id_tutor</th>
+                <th>Tutor</th>
                 <th>Acciones</th>
             </tr>
             </thead>
